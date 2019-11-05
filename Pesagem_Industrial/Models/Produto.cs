@@ -10,6 +10,7 @@ namespace Pesagem_Industrial.Models
     public class Produto
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
         [MaxLength(200)]
@@ -19,12 +20,13 @@ namespace Pesagem_Industrial.Models
         public string Origem { get; set; }
         [DataType(DataType.Date)]
         public DateTime DataCadastro { get; set; }
-        [ForeignKey("Id")]
+
+        [NotMapped]
         public Unidade Unidade { get; set; }
-        [ForeignKey("Id")]
-        public Grupo Grupo { get; set; }
-        [ForeignKey("Id")]
-        public Armazem Armazem { get; set; }
+       // [ForeignKey("Id")]
+        //public Grupo Grupo { get; set; }
+        //[ForeignKey("Id")]
+       // public Armazem Armazem { get; set; }
 
 
        
