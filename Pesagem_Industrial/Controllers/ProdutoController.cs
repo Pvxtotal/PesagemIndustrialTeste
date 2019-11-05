@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Pesagem_Industrial.Models;
 using Pesagem_Industrial.DbConnect;
+using Pesagem_Industrial.DAL;
 
 namespace Pesagem_Industrial.Controllers
 {
@@ -28,8 +29,7 @@ namespace Pesagem_Industrial.Controllers
         {
             if(ModelState.IsValid)
             {
-                db.Produtos.Add(produto);
-                db.SaveChanges();
+                ProdutoDAL.InserirProduto(produto);
             }
             return View();
         }
