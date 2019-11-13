@@ -40,6 +40,18 @@
         </div>
 
         <div class="form-group">
+            <label class="control-label col-md-2" col-md-2>Unidade</label>
+            <div class="col-md-10">
+                <select name="Unidade" id="Unidade" class="form-control">
+                    @foreach(var item in Model.Unidade.Tipos)
+                    {
+                        <option value="@item">@item</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Enviar" class="btn btn-default" />
             </div>

@@ -21,7 +21,18 @@ namespace Pesagem_Industrial.Controllers
         [HttpGet]
         public ActionResult InserirProduto()
         {
-            return View();
+
+            Produto produto = new Produto();
+            Unidade unidade = new Unidade();
+            
+            unidade.Tipos.Add("Massa");
+            unidade.Tipos.Add("Comprimento");
+            unidade.Tipos.Add("Capacidade");
+            unidade.Tipos.Add("Unítário");
+            produto.Unidade = unidade;
+
+
+            return View(produto);
         }
 
         [HttpPost]
@@ -36,8 +47,8 @@ namespace Pesagem_Industrial.Controllers
 
         public ActionResult ListarProduto()
         {
-            var produtosFerro = db.Produtos.Where(x => x.Origem == "Ferro").FirstOrDefault();
-            return View(produtosFerro);
+            var produtos = db.Produtos.ToList();
+            return View(produtos);
         }
     }
 }

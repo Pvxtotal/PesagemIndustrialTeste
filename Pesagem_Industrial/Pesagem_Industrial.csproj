@@ -132,7 +132,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
-    <Compile Include="Controllers\ProdutosEFController.cs" />
     <Compile Include="DAL\ProdutoDAL.cs" />
     <Compile Include="DbConnect\PesagemIndustrialConnect.cs" />
     <Compile Include="Global.asax.cs">
@@ -183,11 +182,6 @@
     <Content Include="Views\Produto\InserirProduto.cshtml" />
     <Content Include="Views\Produto\ListarProduto.cshtml" />
     <Content Include="Views\Produto\EditarProduto.cshtml" />
-    <Content Include="Views\ProdutosEF\Create.cshtml" />
-    <Content Include="Views\ProdutosEF\Delete.cshtml" />
-    <Content Include="Views\ProdutosEF\Details.cshtml" />
-    <Content Include="Views\ProdutosEF\Edit.cshtml" />
-    <Content Include="Views\ProdutosEF\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -20,13 +20,18 @@ namespace Pesagem_Industrial.Models
         public string Origem { get; set; }
         [DataType(DataType.Date)]
         public DateTime DataCadastro { get; set; }
+        public int? Armazem_Id { get; set; }
+        [ForeignKey("Armazem_Id")]
+        public virtual Armazem Armazem { get; set; }
+        public int? Unidade_Id { get; set; }
+        [ForeignKey("Unidade_Id")]
+        public virtual Unidade Unidade { get; set; }
+        public int? Grupo_Id { get; set; }
+        [ForeignKey("Grupo_Id")]
+        public virtual Grupo Grupo { get; set; }
 
-        [NotMapped]
-        public Unidade Unidade { get; set; }
-       // [ForeignKey("Id")]
-        //public Grupo Grupo { get; set; }
-        //[ForeignKey("Id")]
-       // public Armazem Armazem { get; set; }
+
+      
 
 
        

@@ -1,37 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
 
 namespace Pesagem_Industrial.Models
 {
     public class Unidade
     {
-        public enum Peso
-        {
-            KG,
-            MG,
-            G,
-            TON
-        };
+        [Key]
+        public int Id { get; set; }
+        public string Medida { get; set; }
+        public List<string> Tipos { get; set; }
 
-        public enum Comprimento
-        {
-            M,
-            KM,
-            CM,
-            MM
-        };
 
-        public enum Liquido
+        public Unidade()
         {
-            L,
-            ML,
-            KL
-        };
-
-        public enum Unitario
-        {
-            Peca,
-            Unidade
-        };
-        
+            this.Tipos = new List<string>();
+        }
+    
+  
     }
 }
