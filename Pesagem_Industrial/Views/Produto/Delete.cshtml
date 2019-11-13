@@ -1,0 +1,72 @@
+﻿@model Pesagem_Industrial.Models.Produto
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Produto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Armazem.Local)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Armazem.Local)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Grupo.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Grupo.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Unidade.Medida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Unidade.Medida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Origem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Origem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataCadastro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataCadastro)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "ListarProduto")
+        </div>
+    }
+</div>

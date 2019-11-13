@@ -6,49 +6,107 @@ using System.Web.Mvc;
 using Pesagem_Industrial.Models;
 using Pesagem_Industrial.DbConnect;
 using Pesagem_Industrial.DAL;
+using Pesagem_Industrial.Util;
+using System.Net;
 
 namespace Pesagem_Industrial.Controllers
 {
     public class ProdutoController : Controller
     {
         private PesagemIndustrialConnect db = new PesagemIndustrialConnect();
-        // GET: Produto
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         [HttpGet]
         public ActionResult InserirProduto()
         {
-
             Produto produto = new Produto();
-            Unidade unidade = new Unidade();
-            
-            unidade.Tipos.Add("Massa");
-            unidade.Tipos.Add("Comprimento");
-            unidade.Tipos.Add("Capacidade");
-            unidade.Tipos.Add("Unítário");
-            produto.Unidade = unidade;
+            produto.Unidade = Util.ListarMedidas.Listar();
+            IArmazemDAL armazemDal = new ArmazemDAL();
+            IGrupoDAL grupoDal = new GrupoDAL();
+            ViewBag.Grupos = grupoDal.ListarGrupos();
+            ViewBag.Armazens = armazemDal.ListarArmazens();
+            ViewBag.Medidas = produto.Unidade.Tipos;
 
-
-            return View(produto);
+            return View();
         }
 
         [HttpPost]
         public ActionResult InserirProduto(Produto produto)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                ProdutoDAL.InserirProduto(produto);
+                IProdutoDAL dal = new ProdutoDAL();
+                dal.InserirProduto(produto);
+                return RedirectToAction("ListarProduto");
             }
-            return View();
+            return View(produto);
         }
 
-        public ActionResult ListarProduto()
+        public ActionResult Index()
         {
-            var produtos = db.Produtos.ToList();
-            return View(produtos);
+            IProdutoDAL dal = new ProdutoDAL();
+            return View(dal.ListarProdutos());
         }
+
+
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        [HttpPost]
+        public ActionResult ListarMedidas(string tipo)
+        {
+            IUnidadeDAL unidadeDAL = new UnidadeDAL();
+
+            SelectList lista = unidadeDAL.ListarMedidas(tipo);
+
+            return Json(lista);
+        }
+
+        public ActionResult Editar(int? id)
+        {
+            IProdutoDAL dal = new ProdutoDAL();
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Produto produto = dal.EncontrarId(id);
+            if (produto == null)
+            {
+                return HttpNotFound();
+            }
+
+            produto.Unidade = Util.ListarMedidas.Listar();
+
+            IArmazemDAL armazemDal = new ArmazemDAL();
+
+            IGrupoDAL grupoDal = new GrupoDAL();
+
+            ViewBag.Grupos = grupoDal.ListarGrupos();
+            ViewBag.Armazens = armazemDal.ListarArmazens();
+            ViewBag.Medidas = produto.Unidade.Tipos;
+
+            return View(produto);
+
+        }
+
+        [HttpPost]
+        public ActionResult Editar(Produto produto)
+        {
+            if (ModelState.IsValid)
+            {
+                IProdutoDAL dal = new ProdutoDAL();
+                dal.EditarProduto(produto);
+                return RedirectToAction("ListarProduto");
+            }
+            return View(produto);
+        }
+
     }
 }

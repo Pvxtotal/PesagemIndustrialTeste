@@ -1,0 +1,32 @@
+﻿@model Pesagem_Industrial.Models.Armazem
+
+@{
+    ViewBag.Title = "Deletar";
+}
+
+<h2>Excluir</h2>
+
+<h3>Excluir Armazém?</h3>
+<div>
+    <h4>Armazem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Local)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Local)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Deletar" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </div>
+    }
+</div>

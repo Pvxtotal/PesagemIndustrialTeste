@@ -7,16 +7,53 @@ using Pesagem_Industrial.Models;
 
 namespace Pesagem_Industrial.DAL
 {
-    public class ProdutoDAL
+    public class ProdutoDAL: IProdutoDAL
     {
         private static PesagemIndustrialConnect db = new PesagemIndustrialConnect();
 
-        public static void InserirProduto(Produto produto)
+        public void InserirProduto(Produto produto)
         {
-            db.Produtos.Add(produto);
-            db.SaveChanges();
+            produto.DataCadastro = DateTime.Now;
+            try
+            {
+                db.Produtos.Add(produto);
+                db.SaveChanges();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
+            
         }
 
-    
+        public IEnumerable<Produto> ListarProdutos()
+        {
+            try
+            {
+                return db.Produtos.ToList();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+        public Produto EncontrarId(int? id)
+        {
+            return db.Produtos.Find(id);
+        }
+
+        public void EditarProduto(Produto produto)
+        {
+            var prod = db.Produtos.Find(produto.Id);
+            prod.Armazem_Id = produto.Armazem_Id;
+            prod.Descricao = produto.Descricao;
+            prod.Grupo_Id = produto.Grupo_Id;
+            prod.Origem = produto.Origem;
+            prod.Unidade_Id = produto.Unidade_Id;
+            db.SaveChanges();
+        }
     }
 }
