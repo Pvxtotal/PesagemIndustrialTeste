@@ -69,7 +69,7 @@ namespace Pesagem_Industrial.Controllers
             usuario = dal.Logar(usuario);
             if(usuario == null)
             {
-                ViewBag.Erro = "Usuario ou Senha invalida";
+                ViewBag.Erro = "Erro";
                 return View();
             }
 
