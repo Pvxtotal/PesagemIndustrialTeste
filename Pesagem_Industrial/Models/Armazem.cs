@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Pesagem_Industrial.Models
 {
+    [Table("Armazens")]
     public class Armazem
     {
        [Key]

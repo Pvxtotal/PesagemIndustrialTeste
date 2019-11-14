@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Pesagem_Industrial.Models
 {
+    [Table("Grupos")]
     public class Grupo
     {
         [Key]

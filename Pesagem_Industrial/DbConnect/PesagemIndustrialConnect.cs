@@ -35,6 +35,8 @@ namespace Pesagem_Industrial.DbConnect
         public virtual DbSet<Armazem> Armazens { get; set; }
 
         public System.Data.Entity.DbSet<Pesagem_Industrial.Models.Unidade> Unidades { get; set; }
+
+        public System.Data.Entity.DbSet<Pesagem_Industrial.Models.Usuario> Usuarios { get; set; }
     }
 
     //public class MyEntity

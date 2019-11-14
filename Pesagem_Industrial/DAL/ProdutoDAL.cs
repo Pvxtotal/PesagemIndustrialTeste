@@ -43,7 +43,7 @@ namespace Pesagem_Industrial.DAL
         public Produto EncontrarId(int? id)
         {
             return db.Produtos.Find(id);
-        }
+        }  
 
         public void EditarProduto(Produto produto)
         {
