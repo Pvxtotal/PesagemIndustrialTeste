@@ -8,9 +8,12 @@ using System.Web;
 using System.Web.Mvc;
 using Pesagem_Industrial.DbConnect;
 using Pesagem_Industrial.Models;
+using Pesagem_Industrial.Util;
+using Pesagem_Industrial.DAL;
 
 namespace Pesagem_Industrial.Controllers
 {
+    [Session]
     public class ArmazensController : Controller
     {
         private PesagemIndustrialConnect db = new PesagemIndustrialConnect();
@@ -18,7 +21,8 @@ namespace Pesagem_Industrial.Controllers
         // GET: Armazens
         public ActionResult Index()
         {
-            return View(db.Armazens.ToList());
+            IArmazemDAL dal = new ArmazemDAL();
+            return View(dal.ListarArmazens());
         }
 
         // GET: Armazens/Details/5
@@ -28,7 +32,8 @@ namespace Pesagem_Industrial.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Armazem armazem = db.Armazens.Find(id);
+            IArmazemDAL dal = new ArmazemDAL();
+            Armazem armazem = dal.Detalhes(id);
             if (armazem == null)
             {
                 return HttpNotFound();
@@ -49,8 +54,8 @@ namespace Pesagem_Industrial.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Armazens.Add(armazem);
-                db.SaveChanges();
+                IArmazemDAL dal = new ArmazemDAL();
+                dal.InserirArmazem(armazem);
                 return RedirectToAction("Index");
             }
 

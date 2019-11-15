@@ -8,9 +8,12 @@ using System.Web;
 using System.Web.Mvc;
 using Pesagem_Industrial.DbConnect;
 using Pesagem_Industrial.Models;
+using Pesagem_Industrial.Util;
+using Pesagem_Industrial.DAL;
 
 namespace Pesagem_Industrial.Controllers
 {
+    [Session]
     public class GruposController : Controller
     {
         private PesagemIndustrialConnect db = new PesagemIndustrialConnect();
@@ -18,7 +21,8 @@ namespace Pesagem_Industrial.Controllers
         // GET: Grupos
         public ActionResult Index()
         {
-            return View(db.Grupos.ToList());
+            IGrupoDAL dal = new GrupoDAL();
+            return View(dal.ListarGrupos());
         }
 
         // GET: Grupos/Details/5
@@ -28,7 +32,8 @@ namespace Pesagem_Industrial.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Grupo grupo = db.Grupos.Find(id);
+            IGrupoDAL dal = new GrupoDAL();
+            Grupo grupo = dal.Detalhes(id);
             if (grupo == null)
             {
                 return HttpNotFound();
@@ -42,15 +47,15 @@ namespace Pesagem_Industrial.Controllers
             return View();
         }
 
-   
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Descricao")] Grupo grupo)
         {
             if (ModelState.IsValid)
             {
-                db.Grupos.Add(grupo);
-                db.SaveChanges();
+                IGrupoDAL dal = new GrupoDAL();
+                dal.InserirGrupo(grupo);
                 return RedirectToAction("Index");
             }
 

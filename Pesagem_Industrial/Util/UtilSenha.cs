@@ -25,7 +25,7 @@ namespace Pesagem_Industrial.Util
             return savedPasswordHash;
         }
 
-        public void Verificar(string senha, string senhaDigitada)
+        public bool Verificar(string senha, string senhaDigitada)
         {
 
             byte[] hashBytes = Convert.FromBase64String(senha);
@@ -37,8 +37,20 @@ namespace Pesagem_Industrial.Util
             byte[] hash = pbkdf2.GetBytes(20);
             /* Compare the results */
             for (int i = 0; i < 20; i++)
+            {
                 if (hashBytes[i + 16] != hash[i])
-                    throw new UnauthorizedAccessException();
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+
+            }
+            return false;
+
+
 
         }
 

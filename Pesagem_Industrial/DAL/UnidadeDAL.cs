@@ -10,17 +10,19 @@ namespace Pesagem_Industrial.DAL
 {
     public class UnidadeDAL : IUnidadeDAL
     {
-        private PesagemIndustrialConnect db = new PesagemIndustrialConnect();
-
         public SelectList ListarMedidas(string tipo)
         {
-            List<Unidade> medidasPrimario = new List<Unidade>();
+            using (PesagemIndustrialConnect db = new PesagemIndustrialConnect())
+            {
+                List<Unidade> medidasPrimario = new List<Unidade>();
 
-            medidasPrimario = db.Unidades.Where(x => x.Tipo == tipo).ToList();
+                medidasPrimario = db.Unidades.Where(x => x.Tipo == tipo).ToList();
 
-            SelectList medidas = new SelectList(medidasPrimario, "Id", "Medida");
+                SelectList medidas = new SelectList(medidasPrimario, "Id", "Medida");
 
-            return medidas;
+                return medidas;
+            }
+
         }
     }
 }

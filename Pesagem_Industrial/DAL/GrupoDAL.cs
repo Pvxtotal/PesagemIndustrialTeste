@@ -9,21 +9,55 @@ namespace Pesagem_Industrial.DAL
 {
     public class GrupoDAL : IGrupoDAL
     {
-        PesagemIndustrialConnect db = new PesagemIndustrialConnect();
         public IEnumerable<Grupo> ListarGrupos()
         {
-            try
+            using (PesagemIndustrialConnect db = new PesagemIndustrialConnect())
             {
-                return db.Grupos.ToList();
+                try
+                {
+                    return db.Grupos.ToList();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
             }
-            catch (Exception ex)
+            
+        }
+
+        public Grupo Detalhes(int? id)
+        {
+            using (PesagemIndustrialConnect db = new PesagemIndustrialConnect())
             {
-                Console.WriteLine(ex.Message);
-                return null;
+                try
+                {
+                    return db.Grupos.Find(id);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+
             }
-            finally
+
+        }
+
+        public void InserirGrupo(Grupo grupo)
+        {
+            using (PesagemIndustrialConnect db = new PesagemIndustrialConnect())
             {
-                db.Dispose();
+                try
+                {
+                    db.Grupos.Add(grupo);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
             }
         }
     }

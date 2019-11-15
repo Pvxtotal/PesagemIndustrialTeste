@@ -9,7 +9,7 @@ using System.Web.Mvc;
 using Pesagem_Industrial.DbConnect;
 using Pesagem_Industrial.Models;
 using Pesagem_Industrial.DAL;
-
+using Pesagem_Industrial.Util;
 
 namespace Pesagem_Industrial.Controllers
 {
@@ -18,13 +18,14 @@ namespace Pesagem_Industrial.Controllers
         private PesagemIndustrialConnect db = new PesagemIndustrialConnect();
 
         // GET: Usuarios
+        [Session]
         public ActionResult Index()
         {
             IUsuarioDAL dal = new UsuarioDAL();
             return View(dal.ListarUsuarios());
         }
 
-        // GET: Usuarios/Create
+        [Session]
         public ActionResult Create()
         {
             Usuario usuario = new Usuario();
@@ -34,6 +35,7 @@ namespace Pesagem_Industrial.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Session]
         public ActionResult Create([Bind(Include = "Id,Username,Senha,Perfil")] Usuario usuario)
         {
             if (ModelState.IsValid)
@@ -47,6 +49,7 @@ namespace Pesagem_Industrial.Controllers
         }
 
         [HttpPost]
+        [Session]
         public ActionResult Delete(int id)
         {
             IUsuarioDAL dal = new UsuarioDAL();
@@ -54,6 +57,7 @@ namespace Pesagem_Industrial.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         public ActionResult Login()
         {
             return View();

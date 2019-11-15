@@ -7,11 +7,14 @@ using System.Web;
 
 namespace Pesagem_Industrial.Models
 {
+    [Table("Unidades")]
     public class Unidade
     {
         [Key]
         public int Id { get; set; }
+        [Required]
         public string Medida { get; set; }
+        [Required]
         public string Tipo { get; set; }
 
         [NotMapped]

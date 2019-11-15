@@ -9,24 +9,60 @@ namespace Pesagem_Industrial.DAL
 {
     public class ArmazemDAL : IArmazemDAL
     {
-        private PesagemIndustrialConnect db = new PesagemIndustrialConnect();
-
         public IEnumerable<Armazem> ListarArmazens()
         {
-            try
+            using (PesagemIndustrialConnect db = new PesagemIndustrialConnect())
             {
-                return db.Armazens.ToList();
+                try
+                {
+                    return db.Armazens.ToList();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+
             }
-            catch (Exception ex)
+
+        }
+
+        public Armazem Detalhes(int? id)
+        {
+            using (PesagemIndustrialConnect db = new PesagemIndustrialConnect())
             {
-                Console.WriteLine(ex.Message);
-                return null;
+                try
+                {
+                    return db.Armazens.Find(id);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+
             }
-            finally
+
+        }
+
+        public void InserirArmazem(Armazem armazem)
+        {
+            using (PesagemIndustrialConnect db = new PesagemIndustrialConnect())
             {
-                db.Dispose();
+                try
+                {
+                    db.Armazens.Add(armazem);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
             }
         }
+
+
 
     }
 }

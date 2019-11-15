@@ -8,9 +8,12 @@ using Pesagem_Industrial.DbConnect;
 using Pesagem_Industrial.DAL;
 using Pesagem_Industrial.Util;
 using System.Net;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 
 namespace Pesagem_Industrial.Controllers
 {
+    [Session]
     public class ProdutoController : Controller
     {
         private PesagemIndustrialConnect db = new PesagemIndustrialConnect();
@@ -76,7 +79,8 @@ namespace Pesagem_Industrial.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Produto produto = dal.EncontrarId(id);
+            Produto produto = new Produto();
+            produto = dal.EncontrarId(id);
             if (produto == null)
             {
                 return HttpNotFound();
@@ -99,10 +103,17 @@ namespace Pesagem_Industrial.Controllers
         [HttpPost]
         public ActionResult Editar(Produto produto)
         {
+
+            if (produto.Unidade_Id == null)
+            {
+                ModelState.AddModelError(string.Empty, "Erro!");
+            }
+
             if (ModelState.IsValid)
             {
                 IProdutoDAL dal = new ProdutoDAL();
                 dal.EditarProduto(produto);
+
                 return RedirectToAction("Index");
             }
             return View(produto);

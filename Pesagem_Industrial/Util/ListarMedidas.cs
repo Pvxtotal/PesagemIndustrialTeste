@@ -11,7 +11,7 @@ namespace Pesagem_Industrial.Util
         public static Unidade Listar()
         {
             Unidade unidade = new Unidade();
-
+            unidade.Tipos = new List<string>();
             unidade.Tipos.Add("Massa");
             unidade.Tipos.Add("Comprimento");
             unidade.Tipos.Add("Capacidade");
