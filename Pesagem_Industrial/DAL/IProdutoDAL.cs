@@ -17,6 +17,10 @@ namespace Pesagem_Industrial.DAL
 
         void EditarProduto(Produto produto);
 
+        void ExcluirProduto(int id);
+
+
+
 
     }
 }

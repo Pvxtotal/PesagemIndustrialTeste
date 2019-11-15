@@ -36,7 +36,7 @@ namespace Pesagem_Industrial.Controllers
             {
                 IProdutoDAL dal = new ProdutoDAL();
                 dal.InserirProduto(produto);
-                return RedirectToAction("ListarProduto");
+                return RedirectToAction("Index");
             }
             return View(produto);
         }
@@ -103,10 +103,33 @@ namespace Pesagem_Industrial.Controllers
             {
                 IProdutoDAL dal = new ProdutoDAL();
                 dal.EditarProduto(produto);
-                return RedirectToAction("ListarProduto");
+                return RedirectToAction("Index");
             }
             return View(produto);
         }
+
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Produto produto = db.Produtos.Find(id);
+            if (produto == null)
+            {
+                return HttpNotFound();
+            }
+            return View(produto);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            IProdutoDAL dal = new ProdutoDAL();
+            dal.ExcluirProduto(id);
+            return RedirectToAction("Index");
+        }
+
 
     }
 }

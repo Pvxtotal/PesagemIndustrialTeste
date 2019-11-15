@@ -18,6 +18,11 @@ namespace Pesagem_Industrial.DAL
 
         public void CadastrarUsuario(Usuario usuario)
         {
+            //Util.UtilSenha util = new Util.UtilSenha();
+
+            //usuario.Senha = util.GerarHash(usuario.Senha);
+
+
             try
             {
                 db.Usuarios.Add(usuario);

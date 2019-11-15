@@ -55,5 +55,20 @@ namespace Pesagem_Industrial.DAL
             prod.Unidade_Id = produto.Unidade_Id;
             db.SaveChanges();
         }
+
+        public void ExcluirProduto(int id)
+        {
+            try
+            {
+                var produto = db.Produtos.Find(id);
+                db.Produtos.Remove(produto);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+           
+        }
     }
 }

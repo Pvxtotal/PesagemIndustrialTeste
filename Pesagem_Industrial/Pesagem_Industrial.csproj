@@ -157,6 +157,7 @@
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\ListarMedidas.cs" />
+    <Compile Include="Util\UtilSenha.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -337,7 +338,6 @@
     <Content Include="Views\Unidades\Edit.cshtml" />
     <Content Include="Views\Unidades\Index.cshtml" />
     <Content Include="Views\Produto\Editar.cshtml" />
-    <Content Include="Views\Produto\Delete.cshtml" />
     <Content Include="Views\Usuarios\Create.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
     <Content Include="Views\Usuarios\Login.cshtml" />
@@ -347,6 +347,7 @@
     <Content Include="vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Views\Produto\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
