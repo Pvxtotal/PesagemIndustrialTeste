@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Pesagem_Industrial.Models.Armazem">
+    <Position X="4.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Armazem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pesagem_Industrial.Models.Grupo">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Grupo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pesagem_Industrial.Models.Produto">
+    <Position X="7.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAABAIAgQABQAAAAAAAAAAAAAAAAAgAAAEI=</HashCode>
+      <FileName>Models\Produto.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Unidade" />
+      <Property Name="Grupo" />
+      <Property Name="Armazem" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Pesagem_Industrial.Models.Unidade">
+    <Position X="10.75" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAACAAAAAAAgAAAAAAAQ=</HashCode>
+      <FileName>Models\Unidade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Pesagem_Industrial.Models.Usuario">
+    <Position X="3" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAQAACAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Usuario.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
