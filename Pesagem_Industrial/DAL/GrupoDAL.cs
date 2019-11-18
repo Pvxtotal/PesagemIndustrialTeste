@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using Pesagem_Industrial.DbConnect;
@@ -52,6 +53,39 @@ namespace Pesagem_Industrial.DAL
                 {
                     db.Grupos.Add(grupo);
                     db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+            }
+        }
+
+        public void EditarGrupo(Grupo grupo)
+        {
+            using (PesagemIndustrialConnect db = new PesagemIndustrialConnect())
+            {
+                try
+                {
+                    db.Set<Grupo>().AddOrUpdate(grupo);
+                    db.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+            }
+        }
+
+        public void ExcluirGrupo(Grupo grupo)
+        {
+            using (PesagemIndustrialConnect db = new PesagemIndustrialConnect())
+            {
+                try
+                {
+                    db.Grupos.Remove(grupo);
                 }
                 catch (Exception ex)
                 {

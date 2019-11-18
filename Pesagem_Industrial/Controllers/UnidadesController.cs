@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Pesagem_Industrial.DAL;
 using Pesagem_Industrial.DbConnect;
 using Pesagem_Industrial.Models;
 using Pesagem_Industrial.Util;
@@ -20,7 +21,8 @@ namespace Pesagem_Industrial.Controllers
         // GET: Unidades
         public ActionResult Index()
         {
-            return View(db.Unidades.ToList());
+            IUnidadeDAL dal = new UnidadeDAL();
+            return View(dal.ListarTodos());
         }
 
 
@@ -40,8 +42,8 @@ namespace Pesagem_Industrial.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Unidades.Add(unidade);
-                db.SaveChanges();
+                IUnidadeDAL dal = new UnidadeDAL();
+                dal.Inserir(unidade);
                 return RedirectToAction("Index");
             }
 
@@ -70,8 +72,8 @@ namespace Pesagem_Industrial.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(unidade).State = EntityState.Modified;
-                db.SaveChanges();
+                IUnidadeDAL dal = new UnidadeDAL();
+                dal.Editar(unidade);
                 return RedirectToAction("Index");
             }
             return View(unidade);
@@ -98,8 +100,8 @@ namespace Pesagem_Industrial.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Unidade unidade = db.Unidades.Find(id);
-            db.Unidades.Remove(unidade);
-            db.SaveChanges();
+            IUnidadeDAL dal = new UnidadeDAL();
+            dal.Excluir(unidade);
             return RedirectToAction("Index");
         }
 

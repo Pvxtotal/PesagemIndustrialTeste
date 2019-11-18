@@ -84,8 +84,8 @@ namespace Pesagem_Industrial.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(grupo).State = EntityState.Modified;
-                db.SaveChanges();
+                IGrupoDAL dal = new GrupoDAL();
+                dal.EditarGrupo(grupo);
                 return RedirectToAction("Index");
             }
             return View(grupo);
@@ -112,8 +112,8 @@ namespace Pesagem_Industrial.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Grupo grupo = db.Grupos.Find(id);
-            db.Grupos.Remove(grupo);
-            db.SaveChanges();
+            IGrupoDAL dal = new GrupoDAL();
+            dal.ExcluirGrupo(grupo);
             return RedirectToAction("Index");
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -24,5 +25,70 @@ namespace Pesagem_Industrial.DAL
             }
 
         }
+
+        public IEnumerable<Unidade> ListarTodos()
+        {
+            using (PesagemIndustrialConnect db = new PesagemIndustrialConnect())
+            {
+                try
+                {
+                    return db.Unidades.ToList();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return null;
+                }
+            }
+        }
+
+        public void Inserir(Unidade unidade)
+        {
+            using (PesagemIndustrialConnect db = new PesagemIndustrialConnect())
+            {
+                try
+                {
+                    db.Unidades.Add(unidade);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+
+        public void Editar(Unidade unidade)
+        {
+            using (PesagemIndustrialConnect db = new PesagemIndustrialConnect())
+            {
+                try
+                {
+                    db.Set<Unidade>().AddOrUpdate(unidade);
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+
+        public void Excluir(Unidade unidade)
+        {
+            using(PesagemIndustrialConnect db = new PesagemIndustrialConnect())
+            {
+                try
+                {
+                    db.Unidades.Remove(unidade);
+                    db.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+
     }
 }

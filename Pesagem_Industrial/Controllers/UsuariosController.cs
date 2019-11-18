@@ -70,6 +70,7 @@ namespace Pesagem_Industrial.Controllers
             Usuario usuario = new Usuario();
             usuario.Username = username;
             usuario.Senha = senha;
+
             usuario = dal.Logar(usuario);
             if(usuario == null)
             {
