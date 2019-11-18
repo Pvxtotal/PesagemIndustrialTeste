@@ -2,6 +2,7 @@
 using Pesagem_Industrial.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 
@@ -59,6 +60,38 @@ namespace Pesagem_Industrial.DAL
                     Console.WriteLine(ex.Message);
                 }
 
+            }
+        }
+
+        public void EditarArmazem(Armazem armazem)
+        {
+            using(PesagemIndustrialConnect db = new PesagemIndustrialConnect())
+            {
+                try
+                {
+                    db.Set<Armazem>().AddOrUpdate(armazem);
+                    db.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+        }
+
+        public void ExcluirArmazem(Armazem armazem)
+        {
+            using (PesagemIndustrialConnect db = new PesagemIndustrialConnect())
+            {
+                try
+                {
+                    db.Armazens.Remove(armazem);
+                    db.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
 

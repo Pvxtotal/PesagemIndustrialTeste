@@ -36,12 +36,6 @@ namespace Pesagem_Industrial.Models
         [ForeignKey("Grupo_Id")]
         public virtual Grupo Grupo { get; set; }
 
-   
-
-
-      
-
-
        
     }
 }

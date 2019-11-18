@@ -83,8 +83,8 @@ namespace Pesagem_Industrial.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(armazem).State = EntityState.Modified;
-                db.SaveChanges();
+                IArmazemDAL dal = new ArmazemDAL();
+                dal.EditarArmazem(armazem);
                 return RedirectToAction("Index");
             }
             return View(armazem);
@@ -111,8 +111,8 @@ namespace Pesagem_Industrial.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Armazem armazem = db.Armazens.Find(id);
-            db.Armazens.Remove(armazem);
-            db.SaveChanges();
+            IArmazemDAL dal = new ArmazemDAL();
+            dal.ExcluirArmazem(armazem);
             return RedirectToAction("Index");
         }
 

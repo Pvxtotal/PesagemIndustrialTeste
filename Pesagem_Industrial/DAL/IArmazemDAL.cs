@@ -8,5 +8,9 @@ namespace Pesagem_Industrial.DAL
         Armazem Detalhes(int? id);
         void InserirArmazem(Armazem armazem);
         IEnumerable<Armazem> ListarArmazens();
+
+        void EditarArmazem(Armazem armazem);
+
+        void ExcluirArmazem(Armazem armazem);
     }
 }
