@@ -14,6 +14,7 @@ using Pesagem_Industrial.DAL;
 namespace Pesagem_Industrial.Controllers
 {
     [Session]
+    [SessionADM]
     public class GruposController : Controller
     {
         private PesagemIndustrialConnect db = new PesagemIndustrialConnect();
@@ -25,22 +26,6 @@ namespace Pesagem_Industrial.Controllers
             return View(dal.ListarGrupos());
         }
 
-        // GET: Grupos/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            IGrupoDAL dal = new GrupoDAL();
-            Grupo grupo = new Grupo();
-            grupo = db.Grupos.Find(id);
-            if (grupo == null)
-            {
-                return HttpNotFound();
-            }
-            return View(grupo);
-        }
 
         // GET: Grupos/Create
         public ActionResult Create()

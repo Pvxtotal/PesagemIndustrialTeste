@@ -19,6 +19,7 @@ namespace Pesagem_Industrial.Controllers
 
         // GET: Usuarios
         [Session]
+        [SessionADM]
         public ActionResult Index()
         {
             IUsuarioDAL dal = new UsuarioDAL();
@@ -26,6 +27,7 @@ namespace Pesagem_Industrial.Controllers
         }
 
         [Session]
+        [SessionADM]
         public ActionResult Create()
         {
             Usuario usuario = new Usuario();
@@ -36,6 +38,7 @@ namespace Pesagem_Industrial.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Session]
+        [SessionADM]
         public ActionResult Create([Bind(Include = "Id,Username,Senha,Perfil")] Usuario usuario)
         {
             if (ModelState.IsValid)
@@ -50,6 +53,7 @@ namespace Pesagem_Industrial.Controllers
 
         [HttpPost]
         [Session]
+        [SessionADM]
         public ActionResult Delete(int id)
         {
             Usuario usuario = db.Usuarios.Find(id);
@@ -80,9 +84,16 @@ namespace Pesagem_Industrial.Controllers
             }
 
             Session["UserID"] = usuario.Id;
+            Session["Perfil"] = usuario.Perfil;
 
             return RedirectToAction("Index", "Produto");
 
+        }
+
+        public ActionResult Logoff()
+        {
+            Session.Clear();
+            return RedirectToAction("Login", "Usuarios");
         }
 
         protected override void Dispose(bool disposing)

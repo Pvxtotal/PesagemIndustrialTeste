@@ -14,6 +14,7 @@ using Pesagem_Industrial.Util;
 namespace Pesagem_Industrial.Controllers
 {
     [Session]
+    [SessionADM]
     public class UnidadesController : Controller
     {
         private PesagemIndustrialConnect db = new PesagemIndustrialConnect();

@@ -29,6 +29,7 @@ namespace Pesagem_Industrial.Util
         {
 
             byte[] hashBytes = Convert.FromBase64String(senha);
+
             /* Get the salt */
             byte[] salt = new byte[16];
             Array.Copy(hashBytes, 0, salt, 0, 16);
@@ -50,7 +51,7 @@ namespace Pesagem_Industrial.Util
             }
             return false;
 
-
+            
 
         }
 

@@ -28,24 +28,6 @@ namespace Pesagem_Industrial.DAL
 
         }
 
-        public Armazem Detalhes(int? id)
-        {
-            using (PesagemIndustrialConnect db = new PesagemIndustrialConnect())
-            {
-                try
-                {
-                    return db.Armazens.Find(id);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    return null;
-                }
-
-            }
-
-        }
-
         public void InserirArmazem(Armazem armazem)
         {
             using (PesagemIndustrialConnect db = new PesagemIndustrialConnect())

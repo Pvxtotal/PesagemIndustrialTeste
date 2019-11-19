@@ -79,7 +79,6 @@ namespace Pesagem_Industrial.DAL
                     return null;
                 }
             }
-
         }
     }
 }

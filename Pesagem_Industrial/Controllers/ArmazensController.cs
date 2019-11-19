@@ -14,6 +14,7 @@ using Pesagem_Industrial.DAL;
 namespace Pesagem_Industrial.Controllers
 {
     [Session]
+    [SessionADM]
     public class ArmazensController : Controller
     {
         private PesagemIndustrialConnect db = new PesagemIndustrialConnect();
