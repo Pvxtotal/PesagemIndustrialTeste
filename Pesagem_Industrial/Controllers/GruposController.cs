@@ -33,7 +33,8 @@ namespace Pesagem_Industrial.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             IGrupoDAL dal = new GrupoDAL();
-            Grupo grupo = dal.Detalhes(id);
+            Grupo grupo = new Grupo();
+            grupo = db.Grupos.Find(id);
             if (grupo == null)
             {
                 return HttpNotFound();

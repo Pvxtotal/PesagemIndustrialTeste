@@ -126,6 +126,7 @@ namespace Pesagem_Industrial.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Produto produto = db.Produtos.Find(id);
+            TempData["Produto"] = produto;
             if (produto == null)
             {
                 return HttpNotFound();
@@ -134,10 +135,12 @@ namespace Pesagem_Industrial.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(int id)
+        public  ActionResult Delete(int id)
         {
+            Produto produto = new Produto();
+            produto = TempData["Produto"] as Produto;
             IProdutoDAL dal = new ProdutoDAL();
-            dal.ExcluirProduto(id);
+            dal.ExcluirProduto(produto);
             return RedirectToAction("Index");
         }
 

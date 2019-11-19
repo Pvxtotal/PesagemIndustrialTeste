@@ -52,8 +52,9 @@ namespace Pesagem_Industrial.Controllers
         [Session]
         public ActionResult Delete(int id)
         {
+            Usuario usuario = db.Usuarios.Find(id);
             IUsuarioDAL dal = new UsuarioDAL();
-            dal.ExcluirUsuario(id);
+            dal.ExcluirUsuario(usuario);
             return RedirectToAction("Index");
         }
 

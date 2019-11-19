@@ -24,22 +24,7 @@ namespace Pesagem_Industrial.Controllers
             IArmazemDAL dal = new ArmazemDAL();
             return View(dal.ListarArmazens());
         }
-
-        // GET: Armazens/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            IArmazemDAL dal = new ArmazemDAL();
-            Armazem armazem = dal.Detalhes(id);
-            if (armazem == null)
-            {
-                return HttpNotFound();
-            }
-            return View(armazem);
-        }
+    
 
         // GET: Armazens/Create
         public ActionResult Create()

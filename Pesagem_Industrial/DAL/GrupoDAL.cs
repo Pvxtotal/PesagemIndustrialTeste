@@ -27,23 +27,6 @@ namespace Pesagem_Industrial.DAL
             
         }
 
-        public Grupo Detalhes(int? id)
-        {
-            using (PesagemIndustrialConnect db = new PesagemIndustrialConnect())
-            {
-                try
-                {
-                    return db.Grupos.Find(id);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                    return null;
-                }
-
-            }
-
-        }
 
         public void InserirGrupo(Grupo grupo)
         {

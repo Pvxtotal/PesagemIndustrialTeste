@@ -6,7 +6,7 @@ namespace Pesagem_Industrial.DAL
     public interface IUsuarioDAL
     {
         void CadastrarUsuario(Usuario usuario);
-        void ExcluirUsuario(int id);
+        void ExcluirUsuario(Usuario usuario);
         IEnumerable<Usuario> ListarUsuarios();
         Usuario Logar(Usuario usuario);
     }

@@ -74,14 +74,14 @@ namespace Pesagem_Industrial.DAL
 
         }
 
-        public void ExcluirProduto(int id)
+        public void ExcluirProduto(Produto produto)
         {
             using (PesagemIndustrialConnect db = new PesagemIndustrialConnect())
             {
                 try
                 {
-                    var produto = db.Produtos.Find(id);
-                    db.Produtos.Remove(produto);
+                    var prod = db.Produtos.Where(x => x.Id == produto.Id).FirstOrDefault();
+                    db.Produtos.Remove(prod);
                     db.SaveChanges();
                 }
                 catch (Exception ex)

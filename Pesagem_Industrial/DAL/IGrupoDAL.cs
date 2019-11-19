@@ -7,8 +7,6 @@ namespace Pesagem_Industrial.DAL
     {
         IEnumerable<Grupo> ListarGrupos();
 
-        Grupo Detalhes(int? id);
-
         void InserirGrupo(Grupo grupo);
 
         void EditarGrupo(Grupo grupo);

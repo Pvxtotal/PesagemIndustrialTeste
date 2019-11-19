@@ -39,14 +39,14 @@ namespace Pesagem_Industrial.DAL
 
         }
 
-        public void ExcluirUsuario(int id)
+        public void ExcluirUsuario(Usuario usuario)
         {
             using (PesagemIndustrialConnect db = new PesagemIndustrialConnect())
             {
                 try
                 {
-                    Usuario usuario = db.Usuarios.Find(id);
-                    db.Usuarios.Remove(usuario);
+                    var user = db.Usuarios.Where(x => x.Id == usuario.Id).FirstOrDefault();
+                    db.Usuarios.Remove(user);
                     db.SaveChanges();
                 }
                 catch (Exception ex)
