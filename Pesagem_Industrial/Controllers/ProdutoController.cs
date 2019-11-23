@@ -135,7 +135,7 @@ namespace Pesagem_Industrial.Controllers
         }
 
         [HttpPost]
-        public  ActionResult Delete(int id)
+        public ActionResult Delete()
         {
             Produto produto = new Produto();
             produto = TempData["Produto"] as Produto;
