@@ -79,8 +79,7 @@ namespace Pesagem_Industrial.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Produto produto = new Produto();
-            produto = dal.EncontrarId(id);
+            Produto produto = dal.EncontrarId(id);
             if (produto == null)
             {
                 return HttpNotFound();
@@ -105,6 +104,10 @@ namespace Pesagem_Industrial.Controllers
         {
 
             if (produto.Unidade_Id == null)
+            {
+                ModelState.AddModelError(string.Empty, "Erro!");
+            }
+            if(produto.Armazem_Id == null)
             {
                 ModelState.AddModelError(string.Empty, "Erro!");
             }
